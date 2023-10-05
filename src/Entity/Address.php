@@ -13,22 +13,22 @@ class Address
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    private int $id;
 
     #[ORM\Column(length: 255)]
-    private ?string $city = null;
+    private string $city;
 
     #[ORM\Column(length: 255)]
-    private ?string $street = null;
+    private string $street;
 
     #[ORM\Column(length: 255)]
-    private ?string $house = null;
+    private string $house;
 
     #[ORM\Column]
-    private ?int $postal_code = null;
+    private int $postal_code;
 
     #[ORM\Column(length: 255)]
-    private ?string $phone = null;
+    private string $phone;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'addresses')]
     private Collection $user;
