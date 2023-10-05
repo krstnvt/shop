@@ -67,11 +67,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\JoinTable(name: "user_to_address")]
     private Collection $addresses;
 
+    #[ORM\ManyToMany(targetEntity: Shop::class, inversedBy: 'user')]
+    #[ORM\JoinTable(name: "user_to_shop")]
+    private Collection $shops;
+
     public function __construct()
     {
         $this->updatedAt = new DateTimeImmutable();
         $this->createdAt = new DateTimeImmutable();
         $this->addresses = new ArrayCollection();
+        $this->shops = new ArrayCollection();
     }
 
     /**
@@ -258,6 +263,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         if ($this->addresses->removeElement($address)) {
             $address->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Shop>
+     */
+    public function getShops(): Collection
+    {
+        return $this->shops;
+    }
+
+    public function addShop(Shop $shop): static
+    {
+        if (!$this->shops->contains($shop)) {
+            $this->shops->add($shop);
+            $shop->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeShop(Shop $shop): static
+    {
+        if ($this->shops->removeElement($shop)) {
+            $shop->removeUser($this);
         }
 
         return $this;
