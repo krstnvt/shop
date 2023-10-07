@@ -33,6 +33,10 @@
          <source>submit form</source>
          <target>Зарегистрироваться</target>
       </trans-unit>
+      <trans-unit id="u3I07BJ8" resname="profile">
+         <source>profile</source>
+         <target>Профиль</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
