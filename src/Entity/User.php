@@ -54,17 +54,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private int $status;
 
-    /**
-     * @var DateTimeInterface
-     */
-    #[ORM\Column]
-    private DateTimeInterface $updatedAt;
-
-    /**
-     * @var DateTimeInterface
-     */
-    #[ORM\Column]
-    private DateTimeInterface $createdAt;
+//    /**
+//     * @var DateTimeInterface
+//     */
+//    #[ORM\Column]
+//    private DateTimeInterface $updatedAt;
+//
+//    /**
+//     * @var DateTimeInterface
+//     */
+//    #[ORM\Column]
+//    private DateTimeInterface $createdAt;
 
     #[ORM\ManyToMany(targetEntity: Address::class, inversedBy: 'user')]
     #[ORM\JoinTable(name: "user_to_address")]
@@ -79,8 +79,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->updatedAt = new DateTimeImmutable();
-        $this->createdAt = new DateTimeImmutable();
+//        $this->updatedAt = new DateTimeImmutable();
+//        $this->createdAt = new DateTimeImmutable();
         $this->addresses = new ArrayCollection();
         $this->shops = new ArrayCollection();
     }
@@ -139,44 +139,44 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    /**
-     * @return DateTimeInterface
-     */
-    public function getUpdatedAt(): DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @param DateTimeInterface $updatedAt
-     * @return User
-     */
-    public function setUpdatedAt(DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * @return DateTimeInterface
-     */
-    public function getCreatedAt(): DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @param DateTimeInterface $createdAt
-     * @return User
-     */
-    public function setCreatedAt(DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
+//
+//    /**
+//     * @return DateTimeInterface
+//     */
+//    public function getUpdatedAt(): DateTimeInterface
+//    {
+//        return $this->updatedAt;
+//    }
+//
+//    /**
+//     * @param DateTimeInterface $updatedAt
+//     * @return User
+//     */
+//    public function setUpdatedAt(DateTimeInterface $updatedAt): self
+//    {
+//        $this->updatedAt = $updatedAt;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * @return DateTimeInterface
+//     */
+//    public function getCreatedAt(): DateTimeInterface
+//    {
+//        return $this->createdAt;
+//    }
+//
+//    /**
+//     * @param DateTimeInterface $createdAt
+//     * @return User
+//     */
+//    public function setCreatedAt(DateTimeInterface $createdAt): self
+//    {
+//        $this->createdAt = $createdAt;
+//
+//        return $this;
+//    }
     public function getId(): ?int
     {
         return $this->id;
