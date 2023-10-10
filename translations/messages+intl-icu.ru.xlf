@@ -37,6 +37,10 @@
          <source>profile</source>
          <target>Профиль</target>
       </trans-unit>
+      <trans-unit id="u3I07BJ8" resname="Buyer">
+         <source>Buyer</source>
+         <target>Покупатель</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
