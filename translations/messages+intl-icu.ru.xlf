@@ -37,9 +37,21 @@
          <source>profile</source>
          <target>Профиль</target>
       </trans-unit>
-      <trans-unit id="u3I07BJ8" resname="Buyer">
+      <trans-unit id="u3I07BJ9" resname="Buyer">
          <source>Buyer</source>
          <target>Покупатель</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ10" resname="shop.name">
+         <source>shop.name</source>
+         <target>Название Магазина</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ11" resname="shop.desc">
+         <source>shop.desc</source>
+         <target>Описание Магазина</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ12" resname="submit.shop">
+          <source>submit.shop</source>
+          <target>Создать магазин</target>
       </trans-unit>
     </body>
   </file>
