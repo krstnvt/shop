@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Address;
 use App\Entity\Shop;
 use App\Entity\User;
+use App\Form\AddAddressFormType;
 use App\Form\AddShopFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
+    public const FLASH_INFO = 'info';
     #[Route(path: 'user/profile', name: '_profile')]
     public function profile(): Response
     {
@@ -36,9 +39,33 @@ class ProfileController extends AbstractController
             $entityManager->persist($shop);
             $entityManager->flush();
 
+            $this->addFlash(self::FLASH_INFO, 'Магазин добавлен успешно');
             return $this->redirectToRoute('_profile');
         }
 
         return $this->render('profile/addShop.html.twig', ['form' => $form->createView()]);
+    }
+
+    #[Route(path: 'user/addAddress', name: '_profile_addAddress')]
+    public function addAddress(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $address = new Address();
+        $form = $this->createForm(AddAddressFormType::class, $address);
+
+        $form->handleRequest($request);
+
+        $user = $this->getUser();
+
+        if ($user instanceof User && $form->isSubmitted() && $form->isValid()) {
+            $address->addUser($user);
+
+            $entityManager->persist($address);
+            $entityManager->flush();
+
+            $this->addFlash(self::FLASH_INFO, 'Адрес добавлен успешно');
+            return $this->redirectToRoute('_profile');
+        }
+
+        return $this->render('profile/addAddress.html.twig', ['form' => $form->createView()]);
     }
 }

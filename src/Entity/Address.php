@@ -114,6 +114,7 @@ class Address
     public function addUser(User $user): static
     {
         if (!$this->user->contains($user)) {
+            $user->addAddress($this);
             $this->user->add($user);
         }
 

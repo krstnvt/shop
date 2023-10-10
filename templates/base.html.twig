@@ -41,6 +41,11 @@
                 </div>
             </div>
         </nav>
+        {% for info in app.flashes('info') %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ info }}
+        </div>
+        {% endfor %}
         {% block body %}{% endblock %}
     </body>
 </html>

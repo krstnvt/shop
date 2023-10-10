@@ -53,6 +53,26 @@
           <source>submit.shop</source>
           <target>Создать магазин</target>
       </trans-unit>
+      <trans-unit id="u3I07BJ13" resname="address.city">
+           <source>address.city</source>
+            <target>Город</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ14" resname="address.street">
+           <source>address.street</source>
+           <target>Улица</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ15" resname="address.house">
+           <source>address.house</source>
+           <target>Дом</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ16" resname="address.postcode">
+           <source>address.postcode</source>
+           <target>Почтовый индекс</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ17" resname="submit.address">
+           <source>submit.address</source>
+           <target>Сохранить</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

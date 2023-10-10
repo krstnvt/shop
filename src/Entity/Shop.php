@@ -121,6 +121,7 @@ class Shop
     {
         if (!$this->user->contains($user)) {
             $this->user->add($user);
+            $user->addShop($this);
         }
 
         return $this;
