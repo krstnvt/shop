@@ -73,6 +73,30 @@
            <source>submit.address</source>
            <target>Сохранить</target>
       </trans-unit>
+      <trans-unit id="u3I07BJ18" resname="shops">
+            <source>shops</source>
+            <target>Магазины</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ19" resname="orders">
+            <source>orders</source>
+            <target>Мои заказы</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ20" resname="wishlist">
+            <source>wishlist</source>
+            <target>Список желаний</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ21" resname="return">
+             <source>return</source>
+             <target>Правила Возврата</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ22" resname="delivery">
+              <source>delivery</source>
+              <target>Доставка и оплата</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ23" resname="add.shop">
+              <source>add.shop</source>
+              <target>Создать магазин</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

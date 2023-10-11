@@ -43,7 +43,11 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('_profile');
         }
 
-        return $this->render('profile/addShop.html.twig', ['form' => $form->createView()]);
+        return $this->render('profile/addShop.html.twig',
+            [
+                'user' => $user,
+                'form' => $form->createView()
+            ]);
     }
 
     #[Route(path: 'user/addAddress', name: '_profile_addAddress')]
