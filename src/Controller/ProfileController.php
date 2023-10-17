@@ -31,6 +31,12 @@ class ProfileController extends AbstractController
         return $this->render('profile/listShops.html.twig', ['shops' => $user->getShops()]);
     }
 
+    #[Route(path: 'user/shopInfo/{id<\d+>}', name: '_profile_shopInfo')]
+    public function shopInfo(Shop $shop): Response
+    {
+        return $this->render('profile/shopInfo.html.twig', ['shop' => $shop]);
+    }
+
     #[Route(path: '/user/addShop', name: '_profile_addShop')]
     public function addShop(Request $request, EntityManagerInterface $entityManager): Response
     {
