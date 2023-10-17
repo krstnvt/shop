@@ -22,7 +22,16 @@ class ProfileController extends AbstractController
         return $this->render('profile/profile.html.twig', ['user' => $this->getUser()]);
     }
 
-    #[Route(path: 'user/addShop', name: '_profile_addShop')]
+    #[Route(path: 'user/listShops', name: '_profile_listShops')]
+    public function listShops(): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        return $this->render('profile/listShops.html.twig', ['shops' => $user->getShops()]);
+    }
+
+    #[Route(path: '/user/addShop', name: '_profile_addShop')]
     public function addShop(Request $request, EntityManagerInterface $entityManager): Response
     {
         $shop = new Shop();
@@ -45,7 +54,6 @@ class ProfileController extends AbstractController
 
         return $this->render('profile/addShop.html.twig',
             [
-                'user' => $user,
                 'form' => $form->createView()
             ]);
     }
@@ -70,6 +78,8 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('_profile');
         }
 
-        return $this->render('profile/addAddress.html.twig', ['form' => $form->createView()]);
+        return $this->render('profile/addAddress.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }

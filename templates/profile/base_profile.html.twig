@@ -58,8 +58,7 @@
                             </li>
                         </ul>
                         <ul class="nav flex-column mb-2">
-                            {% for shop in user.shops %}
-                            {% endfor %}
+                            {{ render_esi(url('_profile_listShops')) }}
                         </ul>
                     </div>
                 </nav>
