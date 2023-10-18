@@ -7,7 +7,9 @@ use App\Entity\Shop;
 use App\Entity\User;
 use App\Form\AddAddressFormType;
 use App\Form\AddShopFormType;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Exception\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,8 +34,10 @@ class ProfileController extends AbstractController
     }
 
     #[Route(path: 'user/shopInfo/{id<\d+>}', name: '_profile_shopInfo')]
-    public function shopInfo(Shop $shop): Response
+    public function shopInfo(): Response
     {
+        $shop = new Shop();
+
         return $this->render('profile/shopInfo.html.twig', ['shop' => $shop]);
     }
 
@@ -62,6 +66,41 @@ class ProfileController extends AbstractController
             [
                 'form' => $form->createView()
             ]);
+    }
+
+    #[Route(path: 'user/editShop/{id<\d+>}', name: '_profile_editShop')]
+    public function editShop(Request $request, EntityManagerInterface $entityManager, Shop $shop): Response
+    {
+        $form = $this->createForm(AddShopFormType::class, $shop);
+
+        $form->handleRequest($request);
+
+        $user = $this->getUser();
+
+        if ($user instanceof User && $form->isSubmitted() && $form->isValid()) {
+            $shop->addUser($user);
+            $shop->setStatus($shop::STATUS_NEW);
+
+            $entityManager->persist($shop);
+            $entityManager->flush();
+
+            $this->addFlash(self::FLASH_INFO, 'Магазин обновлен успешно');
+            return $this->redirectToRoute('_profile');
+        }
+
+        return $this->render('profile/editShop.html.twig',
+            [
+                'form' => $form->createView()
+            ]);
+    }
+
+    #[Route('/user/deleteShop/{id<\d+>}', name: '_profile_deleteShop')]
+    public function deleteShop(Shop $shop, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($shop);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('_profile');
     }
 
     #[Route(path: 'user/addAddress', name: '_profile_addAddress')]
