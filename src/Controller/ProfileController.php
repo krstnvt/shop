@@ -29,7 +29,7 @@ class ProfileController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-
+        
         return $this->render('profile/listShops.html.twig', ['shops' => $user->getShops()]);
     }
 
